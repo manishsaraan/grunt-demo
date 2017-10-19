@@ -1,13 +1,18 @@
-var grunt = require('grunt');
-grunt.registerTask('hello','default task',function(){
-	 console.log('hello world!!!');
-});
+module.exports = function(grunt){
+    grunt.initConfig({
+    	pkg: grunt.file.readJSON('package.json'),
+    	cssmin:{
+    		my_target:{
+    			files: [{
+    				expand: true,
+    				cwd: 'css/',
+    				src : ['*.css','!*.min.css'],
+    				dest: 'css/',
+    				ext : '.min.css'
+    			}]
+    		}
+    	}
+    });
 
-grunt.registerTask('name','console name',function(name){
-   if(!name || !name.length){
-   	  grunt.warn("you need to provide a name");   	 
-   }
-    console.log('hello : ',name);
-});
-
-grunt.registerTask("default",["hello","name:manish"]);
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+};
