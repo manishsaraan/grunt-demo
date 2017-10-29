@@ -34,7 +34,26 @@ module.exports = function(grunt){
             options: {
             quiet: true
             },
-            target: ['js/*.js']
+            target: ['js/*.js ']
+        },
+        htmlmin: {
+            dev : {
+                options : {
+                     removeEmptyAttributes : true,
+                     removeEmptyElements : true,
+                     removeComments : true,
+                     removeOptionalTags : true,
+                     collapseWhitespace : true
+                },
+                files : [{
+                     expand : true,
+                     cwd : 'html',
+                     dest : 'html',
+                     src : ['*.html'],
+                     ext : '.min.html',
+                     extDot : 'last'
+                }]
+            }
         }
     });
 
@@ -43,6 +62,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-uglify');  
     grunt.loadNpmTasks('grunt-typescript');  	
     grunt.loadNpmTasks('grunt-xo');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
    
 
 };
