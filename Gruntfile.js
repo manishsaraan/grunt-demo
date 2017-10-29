@@ -54,6 +54,22 @@ module.exports = function(grunt){
                      extDot : 'last'
                 }]
             }
+        },
+        less : {
+            development : {
+                options : {
+                      cleancss : false,
+                      compress : false
+                },
+                files : [{
+                     expand : true,
+                     cwd : 'less',
+                     dest : 'css',
+                     src : ['*.less'],
+                     ext : '.css',
+                     extDot : 'last'
+                }]
+            }
         }
     });
 
@@ -63,7 +79,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-typescript');  	
     grunt.loadNpmTasks('grunt-xo');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
-   
+    grunt.loadNpmTasks('grunt-contrib-less');   
 
 };
   grunt.registerTask('default', ['clean', 'uglify','cssmin','typescript','xo']);
