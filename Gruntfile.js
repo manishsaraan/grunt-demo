@@ -20,12 +20,22 @@ module.exports = function(grunt){
                     ext : '.min.css'
                 }]
             }
+        },
+        typescript : {
+            options : {
+                module : 'commonjs'
+            },
+            all : {
+                src : ['typescript/*.ts'],
+                dest : 'js/output.js'
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-clean');    
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-uglify');    	
+    grunt.loadNpmTasks('grunt-contrib-uglify');  
+    grunt.loadNpmTasks('grunt-typescript');  	
    
 
 };
