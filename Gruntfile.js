@@ -29,6 +29,12 @@ module.exports = function(grunt){
                 src : ['typescript/*.ts'],
                 dest : 'js/output.js'
             }
+        },
+        xo: {
+            options: {
+            quiet: true
+            },
+            target: ['js/*.js']
         }
     });
 
@@ -36,7 +42,8 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');  
     grunt.loadNpmTasks('grunt-typescript');  	
+    grunt.loadNpmTasks('grunt-xo');
    
 
 };
-  grunt.registerTask('default', ['clean', 'uglify','cssmin']);
+  grunt.registerTask('default', ['clean', 'uglify','cssmin','typescript','xo']);
