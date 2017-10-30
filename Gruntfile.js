@@ -70,6 +70,20 @@ module.exports = function(grunt){
                      extDot : 'last'
                 }]
             }
+        },
+        csslint:{
+            strict : {
+                options:{
+
+                },
+                src : ['css/*.css']
+            },
+            laxed : {
+                options : {
+                   'zero-units' : false
+                },
+                src  : ['css/*.css']
+            }
         }
     });
 
@@ -80,6 +94,6 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-xo');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-less');   
-
+    grunt.loadNpmTasks('grunt-contrib-csslint');
 };
   grunt.registerTask('default', ['clean', 'uglify','cssmin','typescript','xo']);
