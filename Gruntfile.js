@@ -85,6 +85,11 @@ module.exports = function(grunt){
                 },
                 src  : ['css/*.css']
             }
+        },
+        checkFileSize : {
+            options:{
+                folderToScan : './css'
+            }
         }
     });
 
@@ -98,9 +103,17 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-csslint');
 };
   grunt.registerTask('default', ['clean', 'uglify','cssmin','typescript','xo']);
-  grunt.registerTask('checkFileSize','Get size of file',function(){
-     var folderToScan = "./js";
-     grunt.file.recurse(folderToScan, function(abspath, rootdir, subdir, filename){
+  grunt.registerTask('checkFileSize','Get size of file',function(debug){
+
+    //get options from grunt task
+    var options = this.options({
+        folderToScan : ''
+    });
+    
+    if(this.args.length !== 0 && debug !== undefined){
+        grunt.log.writeflags(options,'options');
+    }
+     grunt.file.recurse(options.folderToScan, function(abspath, rootdir, subdir, filename){
          if(grunt.file.isFile(abspath)){
             var stats = fs.statSync(abspath);
             var asBytes  = stats.size / 1024;
